@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>دعوة زفاف سيف وإسراء</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;700;900&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold-1: #BF953F;
+            --gold-2: #FCF6BA;
+            --gold-3: #B38728;
+            --gold-4: #FBF5B7;
+            --gold-5: #AA771C;
+            --card-bg: rgba(10, 15, 30, 0.5); /* أغمق قليلاً لزيادة تباين الذهب */
+            --text-main: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0a192f, #020617);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Cairo', sans-serif;
+            height: 100vh;
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated Background Elements */
+        .bg-glow {
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background: var(--gold-3);
+            filter: blur(120px);
+            opacity: 0.15;
+            border-radius: 50%;
+            animation: pulse-glow 6s infinite alternate;
+            z-index: 0;
+        }
+        
+        .bg-glow:nth-child(1) { top: -20vh; left: -20vw; }
+        .bg-glow:nth-child(2) { bottom: -20vh; right: -20vw; animation-delay: -3s; }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.1; }
+            100% { transform: scale(1.4); opacity: 0.25; }
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--gold-2);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 12s infinite linear;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 12px var(--gold-2);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            10% { opacity: 0.8; transform: translateY(90vh) scale(1); }
+            90% { opacity: 0.8; transform: translateY(10vh) scale(1); }
+            100% { transform: translateY(-10vh) scale(0); opacity: 0; }
+        }
+
+        /* الكارت الرئيسي */
+        .invitation-card {
+            width: 92%;
+            max-width: 420px;
+            max-height: 94vh;
+            max-height: 94dvh;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 35px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(252, 246, 186, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: revealCard 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .card-content {
+            width: 100%;
+            padding: 4vh 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2vh;
+            z-index: 2;
+            position: relative;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .card-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        @keyframes revealCard {
+            0% { transform: translateY(40px) scale(0.9); opacity: 0; filter: blur(15px); }
+            100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+        }
+
+        .rings-icon {
+            font-size: min(10vw, 40px);
+            background: linear-gradient(to right, var(--gold-1), var(--gold-2), var(--gold-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(252, 246, 186, 0.5));
+            animation: floatRings 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatRings {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .names {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: min(11vw, 46px);
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--gold-1), var(--gold-2), var(--gold-3), var(--gold-4), var(--gold-5));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+            margin: 0;
+            padding-top: 5px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .wedding-text {
+            font-family: 'Amiri', serif;
+            font-size: min(5.5vw, 22px);
+            color: #e2e8f0;
+            margin: 0;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .date {
+            font-family: 'Cairo', sans-serif;
+            font-size: min(4.5vw, 18px);
+            font-weight: 700;
+            color: var(--gold-2);
+            padding: 1.5vh 0;
+            border-top: 1px solid rgba(252, 246, 186, 0.3);
+            border-bottom: 1px solid rgba(252, 246, 186, 0.3);
+            width: 80%;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Countdown */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: min(3vw, 12px);
+            direction: ltr;
+            width: 100%;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5vh min(2vw, 10px);
+            border-radius: 18px;
+            flex: 1;
+            max-width: 75px;
+            border: 1px solid rgba(252, 246, 186, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .time-val {
+            font-weight: 900;
+            color: #fff;
+            font-size: min(7vw, 26px);
+            line-height: 1;
+            text-shadow: 0 0 15px rgba(252, 246, 186, 0.4);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .time-label {
+            font-size: min(3vw, 11px);
+            color: var(--gold-2);
+            margin-top: 6px;
+            font-weight: 700;
+        }
+
+        /* Actions Grid */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+            padding: 0 5px;
+            margin-top: auto; 
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(252, 246, 186, 0.1), rgba(179, 135, 40, 0.05));
+            border: 1px solid rgba(252, 246, 186, 0.3);
+            border-radius: 20px;
+            padding: 2vh 5px;
+            text-decoration: none;
+            color: var(--gold-2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 246, 186, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .action-btn:hover::before {
+            left: 100%;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(179, 135, 40, 0.3);
+            border-color: var(--gold-2);
+        }
+
+        .action-btn i.main-icon {
+            font-size: min(6vw, 24px);
+            margin-bottom: 8px;
+            color: var(--gold-2);
+            transition: transform 0.3s;
+            filter: drop-shadow(0 0 5px rgba(252, 246, 186, 0.5));
+        }
+
+        .action-btn:hover i.main-icon {
+            transform: scale(1.2);
+        }
+
+        .action-btn span {
+            font-size: min(3.5vw, 14px);
+            font-weight: 700;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .action-btn .sub-text {
+            font-size: min(2.5vw, 11px);
+            color: #cbd5e1;
+            margin-top: 4px;
+        }
+
+        /* Music Player specific */
+        .music-player.playing {
+            background: linear-gradient(135deg, rgba(252, 246, 186, 0.2), rgba(179, 135, 40, 0.1));
+            border-color: var(--gold-2);
+            box-shadow: 0 0 25px rgba(252, 246, 186, 0.4);
+        }
+
+        .music-player.playing i.main-icon {
+            animation: pulse-music 1s infinite alternate;
+        }
+
+        @keyframes pulse-music {
+            0% { transform: scale(1); text-shadow: 0 0 5px var(--gold-2); }
+            100% { transform: scale(1.3); color: #fff; text-shadow: 0 0 20px var(--gold-2); }
+        }
+
+        /* Elegant SVG Corners */
+        .corner-svg {
+            position: absolute;
+            width: min(20vw, 80px);
+            height: auto;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0; 
+        }
+        .top-left { top: 15px; left: 15px; }
+        .bottom-right { bottom: 15px; right: 15px; transform: rotate(180deg); }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow"></div>
+
+    <div class="invitation-card">
+        <!-- SVG Corners -->
+        <svg class="corner-svg top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V20C30 20 50 40 50 70H70C70 30 30 0 0 0Z" fill="url(#gold-grad)"/>
+            <path d="M0 30V45C20 45 35 60 35 80H50C50 50 25 30 0 30Z" fill="url(#gold-grad)"/>
+            <defs>
+                <linearGradient id="gold-grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#BF953F"/>
+                    <stop offset="1" stop-color="#FCF6BA"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <svg class="corner-svg bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0V20C30 20 50 40 50 70H70C70 30 30 0 0 0Z" fill="url(#gold-grad)"/>
+            <path d="M0 30V45C20 45 35 60 35 80H50C50 50 25 30 0 30Z" fill="url(#gold-grad)"/>
+        </svg>
+
+        <div class="card-content">
+            <div>
+                <i class="fa-solid fa-ring rings-icon"></i>
+                <h1 class="names">Seif & Esraa</h1>
+            </div>
+
+            <p class="wedding-text">بيتشرفوا بدعوتكم<br>لحضور حفل زفافهم</p>
+            
+            <div class="date">يوم الجمعة<br>17 يوليو 2026</div>
+
+            <div id="countdown">
+                <div class="time-box">
+                    <span id="days" class="time-val">00</span>
+                    <span class="time-label">يوم</span>
+                </div>
+                <div class="time-box">
+                    <span id="hours" class="time-val">00</span>
+                    <span class="time-label">ساعة</span>
+                </div>
+                <div class="time-box">
+                    <span id="mins" class="time-val">00</span>
+                    <span class="time-label">دقيقة</span>
+                </div>
+                <div class="time-box">
+                    <span id="secs" class="time-val">00</span>
+                    <span class="time-label">ثانية</span>
+                </div>
+            </div>
+
+            <div class="actions-grid">
+                <a href="https://maps.app.goo.gl/QpdQbdnT7zMJ3B7s7" target="_blank" class="action-btn">
+                    <i class="fa-solid fa-location-dot main-icon"></i>
+                    <span>موقع القاعة</span>
+                    <span class="sub-text">افتح الخريطة</span>
+                </a>
+
+                <div class="action-btn music-player" id="musicPlayer" title="تشغيل / إيقاف الموسيقى">
+                    <i class="fa-solid fa-music main-icon" id="musicIcon"></i>
+                    <span>الموسيقى</span>
+                    <span class="sub-text">ادخلي عمري</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- مشغل الصوت - ملف محلي لضمان التشغيل -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="ادخلي عمري.m4a" type="audio/mp4">
+    </audio>
+
+    <script>
+        // منع السكرول نهائياً
+        window.scrollTo(0, 0);
+
+        // Countdown
+        const weddingDate = new Date("July 17, 2026 20:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            } else {
+                document.getElementById("countdown").innerHTML = "<h3 style='color: var(--gold-2); text-shadow: 0 0 10px var(--gold-2); margin: 0;'>اليوم هو يوم الفرح! 🎉</h3>";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Music Player - ملف صوتي محلي
+        const bgAudio = document.getElementById('bgAudio');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        musicPlayer.addEventListener('click', () => {
+            if (!isPlaying) {
+                bgAudio.play().then(() => {
+                    musicPlayer.classList.add('playing');
+                    musicIcon.className = "fa-solid fa-pause main-icon";
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log('Audio play error:', err);
+                });
+            } else {
+                bgAudio.pause();
+                musicPlayer.classList.remove('playing');
+                musicIcon.className = "fa-solid fa-music main-icon";
+                isPlaying = false;
+            }
+        });
+
+        // Floating Particles Background
+        const container = document.body;
+        for (let i = 0; i < 35; i++) {
+            let particle = document.createElement('div');
+            particle.className = 'particle';
+            let size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = (Math.random() * -20) + 's';
+            container.appendChild(particle);
+        }
+    </script>
+</body>
+</html>

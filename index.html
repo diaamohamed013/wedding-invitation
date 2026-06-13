@@ -750,4 +750,120 @@ html, body {
 
     <div class="ornament" id="o3">
       <div class="orn-line"></div>
-      <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d
+      <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
+      <div class="orn-line"></div>
+    </div>
+
+    <div class="section" id="s3">
+      <div class="cd-card">
+        <div class="cd-title">العد التنازلي للفرح</div>
+        <div id="countdown">
+          <div class="cd-box"><span class="cd-num" id="days">00</span><span class="cd-lbl">يوم</span></div>
+          <div class="cd-box"><span class="cd-num" id="hours">00</span><span class="cd-lbl">ساعة</span></div>
+          <div class="cd-box"><span class="cd-num" id="mins">00</span><span class="cd-lbl">دقيقة</span></div>
+          <div class="cd-box"><span class="cd-num" id="secs">00</span><span class="cd-lbl">ثانية</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ornament" id="o4">
+      <div class="orn-line"></div>
+      <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
+      <div class="orn-line"></div>
+    </div>
+
+    <div class="section" id="s4">
+      <div class="actions">
+        <a href="https://maps.app.goo.gl/QpdQbdnT7zMJ3B7s7" target="_blank" class="act-btn">
+          <div class="act-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="act-info">
+            <div class="act-name">موقع القاعة</div>
+            <div class="act-sub">افتح على خرائط جوجل</div>
+          </div>
+          <svg class="act-arr" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </a>
+
+        <div class="act-btn music-act" id="musicBtn" onclick="toggleMusic()">
+          <div class="act-ico"><svg id="musicIco" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+          <div class="act-info">
+            <div class="act-name" id="musicLabel">الموسيقى</div>
+            <div class="act-sub">ادخلي عمري</div>
+          </div>
+          <svg class="act-arr" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" id="footer">
+      <span class="footer-mono">S ♥ E</span>
+      <div class="footer-info">يوم الجمعة · ١٧ يوليو ٢٠٢٦</div>
+      <div class="footer-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<audio id="audio" src="ادخلي عمري.m4a" loop></audio>
+
+<script>
+function openInv() {
+  document.getElementById('landing').classList.add('out');
+  const c = document.getElementById('card');
+  c.classList.add('show');
+  setTimeout(observe, 500);
+  
+  if (!playing) {
+    toggleMusic();
+  }
+}
+
+function scrollToSection() {
+  document.querySelector('.body').scrollIntoView({ behavior: 'smooth' });
+}
+
+function observe() {
+  const targets = document.querySelectorAll('.section, .ornament, .footer');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  targets.forEach(t => io.observe(t));
+}
+
+let playing = false;
+function toggleMusic() {
+  const a = document.getElementById('audio');
+  const btn = document.getElementById('musicBtn');
+  const lbl = document.getElementById('musicLabel');
+  if (!playing) {
+    a.play().then(() => {
+      playing = true;
+      btn.classList.add('on');
+      lbl.textContent = 'جارٍ التشغيل ♪';
+    }).catch(() => {});
+  } else {
+    a.pause();
+    playing = false;
+    btn.classList.remove('on');
+    lbl.textContent = 'الموسيقى';
+  }
+}
+
+function tick() {
+  const t = new Date('2026-07-17T19:00:00');
+  const n = new Date();
+  let d = Math.max(0, t - n);
+  const days = Math.floor(d / 864e5);
+  const hrs  = Math.floor((d % 864e5) / 36e5);
+  const min  = Math.floor((d % 36e5) / 6e4);
+  const sec  = Math.floor((d % 6e4) / 1e3);
+  document.getElementById('days').textContent  = String(days).padStart(2,'0');
+  document.getElementById('hours').textContent = String(hrs).padStart(2,'0');
+  document.getElementById('mins').textContent  = String(min).padStart(2,'0');
+  document.getElementById('secs').textContent  = String(sec).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

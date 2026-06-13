@@ -31,6 +31,7 @@ html, body {
   justify-content: center;
   color: var(--ink);
   overflow-x: hidden;
+  scroll-behavior: smooth; /* تم إضافتها لتنعيم حركة السكرول */
 }
 
 /* ══════════════════
@@ -313,6 +314,7 @@ html, body {
   opacity: 0;
   transition: opacity 0.7s ease 1.6s;
   animation: arrowBounce 2s ease-in-out infinite 2s;
+  cursor: pointer; /* تم الإضافة ليظهر كزر قابل للضغط */
 }
 .card.show .scroll-arrow { opacity: 0.5; }
 @keyframes arrowBounce {
@@ -703,7 +705,8 @@ html, body {
       <div class="hero-date">يوم الجمعة، ١٧ يوليو ٢٠٢٦</div>
     </div>
 
-    <div class="scroll-arrow">
+    <!-- تمت إضافة حدث onclick لدالة النزول لأسفل -->
+    <div class="scroll-arrow" onclick="scrollToSection()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose)"><polyline points="6 9 12 15 18 9"/></svg>
       <span>اسكرول</span>
     </div>
@@ -822,6 +825,16 @@ function openInv() {
   const c = document.getElementById('card');
   c.classList.add('show');
   setTimeout(observe, 500);
+  
+  // إضافة تشغيل الموسيقى تلقائياً بمجرد ضغط الزائر على زر "افتح الدعوة"
+  if (!playing) {
+    toggleMusic();
+  }
+}
+
+// دالة التنقل بسلاسة عند الضغط على زر السكرول
+function scrollToSection() {
+  document.querySelector('.body').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Scroll reveal

@@ -31,7 +31,7 @@ html, body {
   justify-content: center;
   color: var(--ink);
   overflow-x: hidden;
-  scroll-behavior: smooth; /* تم إضافتها لتنعيم حركة السكرول */
+  scroll-behavior: smooth;
 }
 
 /* ══════════════════
@@ -52,7 +52,6 @@ html, body {
 
 .landing.out { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* Decorative SVG florals in corners */
 .floral-tl, .floral-br {
   position: absolute;
   width: min(55vw, 240px);
@@ -120,7 +119,6 @@ html, body {
   margin-bottom: clamp(28px, 6vw, 40px);
 }
 
-/* Open button */
 .land-btn {
   background: var(--rose);
   color: #fff;
@@ -151,7 +149,6 @@ html, body {
 .land-btn:hover::after { opacity: 1; }
 .land-btn:active { transform: translateY(0); }
 
-/* Envelope hint */
 .land-hint {
   margin-top: 16px;
   font-size: 12px;
@@ -173,6 +170,8 @@ html, body {
   transition: opacity 0.9s ease 0.2s;
   display: flex;
   flex-direction: column;
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Hardware Acceleration لتسريع الأداء */
 }
 .card.show { opacity: 1; }
 
@@ -188,7 +187,6 @@ html, body {
   background: linear-gradient(160deg, #F0E6DA 0%, #E8D8C8 50%, #DFC9B5 100%);
 }
 
-/* Decorative circles behind photo */
 .hero::before {
   content: '';
   position: absolute;
@@ -215,7 +213,6 @@ html, body {
   z-index: 1;
 }
 
-/* Full bleed couple photo */
 .hero-photo {
   position: absolute;
   inset: 0;
@@ -224,23 +221,23 @@ html, body {
   object-fit: cover;
   object-position: center top;
   z-index: 2;
+  transform: translateZ(0); /* Hardware Acceleration */
 }
 
-/* Soft gradient from bottom — keeps text readable */
+/* تعديل لون الجراديانت عشان ميبقاش مغمق بدلة العريس */
 .hero-fade {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
     rgba(240,230,218,0) 0%,
-    rgba(240,230,218,0) 30%,
-    rgba(240,230,218,0.5) 60%,
+    rgba(240,230,218,0) 60%,
+    rgba(240,230,218,0.4) 80%,
     rgba(240,230,218,1) 100%
   );
   z-index: 3;
 }
 
-/* Top fade */
 .hero-fade-top {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -249,7 +246,6 @@ html, body {
   z-index: 3;
 }
 
-/* Text block pinned at bottom — no overlap with scroll arrow */
 .hero-text {
   position: relative;
   z-index: 4;
@@ -282,7 +278,6 @@ html, body {
   transition: all 0.8s ease 0.7s;
 }
 
-/* Bigger, bolder ampersand */
 .hero-names .amp {
   color: var(--rose);
   font-size: min(20vw, 90px);
@@ -302,7 +297,6 @@ html, body {
 }
 .card.show .hero-date { opacity: 1; }
 
-/* Scroll arrow — sits BELOW text, no overlap */
 .scroll-arrow {
   position: relative;
   z-index: 4;
@@ -314,7 +308,7 @@ html, body {
   opacity: 0;
   transition: opacity 0.7s ease 1.6s;
   animation: arrowBounce 2s ease-in-out infinite 2s;
-  cursor: pointer; /* تم الإضافة ليظهر كزر قابل للضغط */
+  cursor: pointer;
 }
 .card.show .scroll-arrow { opacity: 0.5; }
 @keyframes arrowBounce {
@@ -327,7 +321,6 @@ html, body {
 /* ── BODY ── */
 .body { display: flex; flex-direction: column; align-items: center; }
 
-/* Divider ornament */
 .ornament {
   display: flex;
   align-items: center;
@@ -348,15 +341,10 @@ html, body {
   background: linear-gradient(to right, transparent, var(--blush) 40%, var(--blush) 60%, transparent);
 }
 
-.orn-center {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+.orn-center { display: flex; align-items: center; gap: 6px; }
 .orn-d { width: 5px; height: 5px; border-radius: 50%; background: var(--rose); opacity: 0.5; }
 .orn-d.big { width: 7px; height: 7px; opacity: 1; }
 
-/* Section reveal */
 .section {
   width: 100%;
   padding: 0 clamp(14px, 5vw, 28px);
@@ -628,28 +616,47 @@ html, body {
   background: var(--blush);
 }
 .footer-dots span:nth-child(2) { background: var(--rose); }
+
+/* ══════════════════
+   DESKTOP RESPONSIVENESS
+══════════════════ */
+@media (min-width: 768px) {
+  body {
+    background: linear-gradient(135deg, var(--warm) 0%, var(--blush) 100%);
+    padding: 40px 0;
+    align-items: center; 
+  }
+  
+  .card {
+    border-radius: 32px; /* تدوير زوايا الكارت */
+    box-shadow: 0 25px 60px rgba(140,80,50,0.15); /* إضافة ظل خارجي يعطي شكل ورقي 3D */
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.5);
+    min-height: auto; /* عدم فرشه بطول الشاشة بالكامل */
+  }
+
+  .hero {
+     min-height: 80vh; /* تقليل الارتفاع قليلًا ليتناسب مع شاشة الكمبيوتر */
+  }
+}
 </style>
 </head>
 <body>
 
-<!-- LANDING -->
 <div class="landing" id="landing">
-  <!-- Floral corners SVG -->
   <svg class="floral-tl" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M280 20 Q200 60 160 120 Q120 180 60 200 Q20 210 10 280" stroke="#C8896A" stroke-width="2" fill="none"/>
     <path d="M260 10 Q180 80 140 150 Q100 200 40 230" stroke="#C8896A" stroke-width="1.2" fill="none" opacity="0.5"/>
     <path d="M300 50 Q230 70 190 130 Q150 190 80 210" stroke="#C8896A" stroke-width="1" fill="none" opacity="0.4"/>
-    <!-- Leaves -->
     <ellipse cx="160" cy="120" rx="18" ry="8" fill="#C8896A" opacity="0.3" transform="rotate(-30 160 120)"/>
     <ellipse cx="200" cy="80" rx="14" ry="6" fill="#C8896A" opacity="0.25" transform="rotate(-50 200 80)"/>
     <ellipse cx="110" cy="170" rx="16" ry="7" fill="#C8896A" opacity="0.2" transform="rotate(-10 110 170)"/>
-    <!-- Flowers -->
     <circle cx="160" cy="120" r="5" fill="#C8896A" opacity="0.6"/>
     <circle cx="200" cy="80" r="4" fill="#B8963E" opacity="0.5"/>
     <circle cx="110" cy="170" r="4" fill="#C8896A" opacity="0.4"/>
     <circle cx="70" cy="200" r="6" fill="#C8896A" opacity="0.5"/>
     <circle cx="140" cy="50" r="3" fill="#B8963E" opacity="0.4"/>
-    <!-- Rose petals at main flower -->
     <ellipse cx="153" cy="113" rx="8" ry="4" fill="#C8896A" opacity="0.4" transform="rotate(-30 153 113)"/>
     <ellipse cx="167" cy="113" rx="8" ry="4" fill="#C8896A" opacity="0.4" transform="rotate(30 167 113)"/>
     <ellipse cx="160" cy="107" rx="4" ry="8" fill="#C8896A" opacity="0.4" transform="rotate(0 160 107)"/>
@@ -679,7 +686,7 @@ html, body {
     <div class="land-date">يوم الجمعة، ١٧ يوليو ٢٠٢٦</div>
 
     <button class="land-btn" onclick="openInv()">
-      ✦ &nbsp; افتح الدعوة &nbsp; ✦
+      ✦   افتح الدعوة   ✦
     </button>
 
     <div class="land-hint">
@@ -689,10 +696,8 @@ html, body {
   </div>
 </div>
 
-<!-- INVITATION -->
 <div class="card" id="card">
 
-  <!-- Hero -->
   <div class="hero">
     <img class="hero-photo" src="couple.png" alt="سيف وإسراء"
          onerror="this.style.display='none'">
@@ -705,17 +710,14 @@ html, body {
       <div class="hero-date">يوم الجمعة، ١٧ يوليو ٢٠٢٦</div>
     </div>
 
-    <!-- تمت إضافة حدث onclick لدالة النزول لأسفل -->
     <div class="scroll-arrow" onclick="scrollToSection()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--rose)"><polyline points="6 9 12 15 18 9"/></svg>
       <span>اسكرول</span>
     </div>
   </div>
 
-  <!-- Body -->
   <div class="body">
 
-    <!-- Invite text -->
     <div class="ornament" id="o1">
       <div class="orn-line"></div>
       <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
@@ -733,7 +735,6 @@ html, body {
       </div>
     </div>
 
-    <!-- Date -->
     <div class="ornament" id="o2">
       <div class="orn-line"></div>
       <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
@@ -756,7 +757,6 @@ html, body {
       </div>
     </div>
 
-    <!-- Countdown -->
     <div class="ornament" id="o3">
       <div class="orn-line"></div>
       <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
@@ -775,7 +775,6 @@ html, body {
       </div>
     </div>
 
-    <!-- Actions -->
     <div class="ornament" id="o4">
       <div class="orn-line"></div>
       <div class="orn-center"><div class="orn-d"></div><div class="orn-d big"></div><div class="orn-d"></div></div>
@@ -804,7 +803,6 @@ html, body {
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer" id="footer">
       <span class="footer-mono">S ♥ E</span>
       <div class="footer-info">يوم الجمعة · ١٧ يوليو ٢٠٢٦</div>
@@ -826,13 +824,12 @@ function openInv() {
   c.classList.add('show');
   setTimeout(observe, 500);
   
-  // إضافة تشغيل الموسيقى تلقائياً بمجرد ضغط الزائر على زر "افتح الدعوة"
   if (!playing) {
     toggleMusic();
   }
 }
 
-// دالة التنقل بسلاسة عند الضغط على زر السكرول
+// Scroll to section
 function scrollToSection() {
   document.querySelector('.body').scrollIntoView({ behavior: 'smooth' });
 }
